@@ -1,4 +1,4 @@
-name: Node.js CI merged to one job
+name: Node.js matrix CI 
 
 on:
   push:
@@ -11,13 +11,17 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14, 16, 18, 20]
+    name: Node ${{ matrix.node }} sample
     steps:
       - name: Git clone
         uses: actions/checkout@v3
       - name: Setup Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node }}
       - name: Install dependencies
         run: |
           npm install
