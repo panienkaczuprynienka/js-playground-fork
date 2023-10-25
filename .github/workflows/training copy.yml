@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CI merged to one job
 
 on:
   push:
@@ -24,7 +24,6 @@ jobs:
         with:
           name: node_modules
           path: node_modules
-
   run_tests:
     needs: install # robi zaleznosc, czeka az sie poorzedni skonczy
     runs-on: ubuntu-latest
